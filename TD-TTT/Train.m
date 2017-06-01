@@ -23,9 +23,9 @@ if (nargin < 7)
     n_save = 10000;
 end
 
-etaChangePoint = 8000;
+etaChangePoint = 20000;
 eta = 0.1;
-etaFactor = 2;
+etaFactor = 2.0;
 % Reload the network's data if needed
 LoadNet();
 
@@ -40,11 +40,13 @@ for i = 1:n_games
     % Set the reward
     r = zeros(1, size(hist, 1));
     r(end) = win;
-    
-    if n_games == etaChangePoint && eta > 1e-4
-        eta = eta / divideFactor;
+
+     % Change eta every etaChangePoint* 2^N 
+    if i == etaChangePoint && eta > 0.001
+        eta = eta / etaFactor;
         etaChangePoint  = etaChangePoint * etaFactor;
     end
+    
     %Train
     if strcmp(TDMethod, 'Backward') == 1
         TDTrainBackward(hist', r,eta);

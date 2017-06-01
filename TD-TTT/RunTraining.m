@@ -1,5 +1,4 @@
 %RUNTRAINING Creates a new network and run a full TD training process
-% !!! changed
 clear all;
 close all;
 clc;
@@ -14,8 +13,8 @@ InitializeNet();
 
 %% Train by playing vs. random opponent
 TdMethods = {'Backward', 'Forward'};
-TDMethodUse = TdMethods{2};
-GetSetPolicy(@Softmax);
+TDMethodUse = TdMethods{1};
+GetSetPolicy(@EpsGreedy);
 n_games = 500000;
 train_res = Train(@TDChooseSquare, @RandomChooseSquare, n_games,TDMethodUse);
 

@@ -3,14 +3,12 @@ function InitializeNet()
 
 % TODO: The current implementation is for a linear perceptron. Change it. 
 
-% !!! changed
-
 mpath = strrep(which(mfilename),[mfilename '.m'],'');
 addpath([mpath 'ActivationFunctions']);
 
 % Set the network's dimensions
-N = [10,70, 1];
-activation = {@ReLU @Tanh};
+N = [10,100, 1];
+activation = {@ReLU @Linear};
 L = length(N) - 1;
 
 % Create a new network

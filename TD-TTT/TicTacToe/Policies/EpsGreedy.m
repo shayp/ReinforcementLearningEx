@@ -3,9 +3,7 @@ function num = EpsGreedy(Grades)
 % Grades    - The critic grades for each possible action
 % num       - The chosen action's index
 
-% !!! changed
-
-epsilon = 0.05;
+epsilon = 0.2;
 
 if (rand < epsilon)
     % Choose random action with probability epsilon
